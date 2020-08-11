@@ -39,23 +39,23 @@ def start_game(quotes):
 
 def hint(quote, remaining_guess):
     if remaining_guess == 3:
-            res = requests.get(f"{BASE_URL}{quote['Bio-Link']}")
-            soup = BeautifulSoup(res.text, 'html.parser')
-            birth_date = soup.find(class_="author-born-date").get_text()
-            birth_place = soup.find(class_="author-born-location").get_text()
-            print(
-                f"Here's a hint: The Author was born on {birth_date} {birth_place}")
-        elif remaining_guess == 2:
-            print(
-                f"Here's a hint: The Author First Name starts with {quote['Author'][0]}")
-        elif remaining_guess == 1:
-            last_str = quote['Author'].split(" ")[1][0]
-            print(
-                f"Here's a hint: The Author Last Name starts with {last_str}")
-        else:
-            print(
-                f"Ooops!! YOU HAVE RUN OUT OF CHANCES\nThe answer was {quote['Author']}")
-                
+        res = requests.get(f"{BASE_URL}{quote['Bio-Link']}")
+        soup = BeautifulSoup(res.text, 'html.parser')
+        birth_date = soup.find(class_="author-born-date").get_text()
+        birth_place = soup.find(class_="author-born-location").get_text()
+        print(
+            f"Here's a hint: The Author was born on {birth_date} {birth_place}")
+    elif remaining_guess == 2:
+        print(
+            f"Here's a hint: The Author First Name starts with {quote['Author'][0]}")
+    elif remaining_guess == 1:
+        last_str = quote['Author'].split(" ")[1][0]
+        print(f"Here's a hint: The Author Last Name starts with {last_str}")
+    else:
+        print(
+            f"Ooops!! YOU HAVE RUN OUT OF CHANCES\nThe answer was {quote['Author']}")
+
+
 if __name__ == "__main__":
     quotes = read_quotes('quotes.csv')
     start_game(quotes)
