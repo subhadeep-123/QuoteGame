@@ -24,7 +24,7 @@ def scrape_quotes():
             })
         next_btn = soup.find(class_="next")
         url = next_btn.find("a")["href"] if next_btn else None
-        time.sleep(1)
+        time.sleep(2)
     return all_quotes
 
 
